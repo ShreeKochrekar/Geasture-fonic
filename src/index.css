@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-dim: #131315;
+  --color-on-tertiary: #560068;
+  --color-surface-container-highest: #353437;
+  --color-surface: #131315;
+  --color-surface-tint: #00dbe7;
+  --color-tertiary-fixed-dim: #f6adff;
+  --color-on-secondary-fixed: #2f1500;
+  --color-surface-container-low: #1c1b1d;
+  --color-tertiary-container: #fccbff;
+  --color-primary: #e1fdff;
+  --color-background: #131315;
+  --color-error: #ffb4ab;
+  --color-on-primary: #00363a;
+  --color-primary-fixed-dim: #00dbe7;
+  --color-surface-container-lowest: #0e0e10;
+  --color-inverse-surface: #e5e1e4;
+  --color-tertiary: #fff4fb;
+  --color-secondary-container: #fd8b00;
+  --color-on-primary-container: #006a71;
+  --color-on-error: #690005;
+  --color-on-background: #e5e1e4;
+  --color-secondary: #ffb77d;
+  --color-inverse-on-surface: #313032;
+  --color-on-tertiary-container: #a200c2;
+  --color-primary-container: #00f2ff;
+  --color-inverse-primary: #00696f;
+  --color-on-tertiary-fixed: #350041;
+  --color-on-secondary-fixed-variant: #6e3900;
+  --color-primary-fixed: #74f5ff;
+  --color-on-primary-fixed-variant: #004f54;
+  --color-surface-variant: #353437;
+  --color-outline: #849495;
+  --color-on-secondary-container: #603100;
+  --color-on-error-container: #ffdad6;
+  --color-secondary-fixed: #ffdcc3;
+  --color-on-tertiary-fixed-variant: #7a0092;
+  --color-outline-variant: #3a494b;
+  --color-error-container: #93000a;
+  --color-surface-container: #201f21;
+  --color-on-surface-variant: #b9cacb;
+  --color-secondary-fixed-dim: #ffb77d;
+  --color-on-secondary: #4d2600;
+  --color-surface-bright: #39393b;
+  --color-on-primary-fixed: #002022;
+  --color-on-surface: #e5e1e4;
+  --color-tertiary-fixed: #fed6ff;
+  --color-surface-container-high: #2a2a2c;
+
+  --radius-DEFAULT: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 9999px;
+
+  --spacing-unit: 4px;
+  --spacing-margin-safe: 32px;
+  --spacing-gutter: 16px;
+  --spacing-zone-padding: 24px;
+  --spacing-stack-sm: 8px;
+  --spacing-stack-md: 16px;
+
+  --font-label-mono: "Space Mono", monospace;
+  --font-display-lg: "Geist", sans-serif;
+  --font-display-mobile: "Geist", sans-serif;
+  --font-body-lg: "Geist", sans-serif;
+  --font-headline-md: "Geist", sans-serif;
+  --font-label-bold: "Geist", sans-serif;
+}
+
+body {
+  background-color: #0a0a0c;
+  color: #e5e1e4; /* --color-on-surface */
+  font-family: "Geist", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #00f2ff; /* --color-primary-container */
+  color: #00363a; /* --color-on-primary */
+}
+
+.grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(132, 148, 149, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(132, 148, 149, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.scanline {
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 219, 231, 0.05) 50%, transparent 100%);
+  background-size: 100% 4px;
+  animation: scan 10s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.glow-cyan { filter: drop-shadow(0 0 8px rgba(0, 219, 231, 0.6)); }
+.glow-orange { filter: drop-shadow(0 0 8px rgba(253, 139, 0, 0.6)); }
+.glow-magenta { filter: drop-shadow(0 0 8px rgba(162, 0, 194, 0.6)); }
+
+.corner-bracket {
+  position: relative;
+}
+.corner-bracket::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  border-top: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+}
+.corner-bracket::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 8px; height: 8px;
+  border-bottom: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+}
+
+.instrument-card {
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.instrument-card:hover {
+  transform: scale(1.02) translateY(-4px);
+  background-color: rgba(53, 52, 55, 0.4);
+}
+
+/* Glassmorphism panel - Kinetic HUD */
+.glass-panel {
+  background: rgba(20, 19, 21, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(185, 202, 203, 0.1);
+}
+
+/* Cyan neon text glow for theremin/piano telemetry */
+.cyan-neon-text {
+  color: #00dbe7;
+  text-shadow: 0 0 10px rgba(0, 219, 231, 0.6), 0 0 20px rgba(0, 219, 231, 0.6);
+}
+
+/* Pitch lane vertical gradient overlay */
+.pitch-lane-gradient {
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 219, 231, 0.05) 50%, transparent 100%);
+}
+
+/* Magenta glow for guitar HUD */
+.magenta-glow {
+  text-shadow: 0 0 15px rgba(255, 0, 255, 0.7), 0 0 30px rgba(255, 0, 255, 0.4);
+}
+
+/* Spinning animation for reticles on tabla and drums */
+.reticle-spin {
+  animation: spin 10s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Guitar string vibration when strummed */
+.string-active {
+  animation: string-vibrate 0.1s infinite;
+  filter: drop-shadow(0 0 8px #ff00ff);
+  background-color: #ff00ff !important;
+}
+@keyframes string-vibrate {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-1px); }
+  75% { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+
+/* Active piano key cyan pulse */
+.active-key {
+  animation: pulse-cyan 0.4s ease-out infinite;
+  background-color: #00dbe7 !important;
+}
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 10px rgba(0, 219, 231, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 25px rgba(0, 219, 231, 0.8); }
+}
+
+/* L-bracket corner accent - container-relative positioning */
+.l-bracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #00dbe7;
+}
+.bracket-tl {
+  top: -1px; left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.bracket-tr {
+  top: -1px; right: -1px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+.bracket-bl {
+  bottom: -1px; left: -1px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+.bracket-br {
+  bottom: -1px; right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 219, 231, 0.3);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 219, 231, 0.6);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 219, 231, 0.3) #0a0a0c;
+}
